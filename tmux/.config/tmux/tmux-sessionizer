@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Make sure to: chmod +x ~/.config/tmux/tmux-sessionizer
+
+# Define primary search directory - just use home directory
+search_dir=$HOME
+
+# Check if fzf is installed
+if ! command -v fzf &> /dev/null; then
+    echo "fzf not found. Please install it:"
+    echo "  brew install fzf (macOS)"
+    echo "  sudo apt install fzf (Ubuntu/Debian)"
+    exit 1
+fi
+
+# Use find command to list directories
+selected=$(find "$search_dir" -mindepth 1 -maxdepth 6 -type d | sort | fzf --height 40% --reverse)
+
+# Exit if nothing was selected
+if [ -z "$selected" ]; then
+    exit 0
+fi
+
+# Create session name from directory name
+selected_name=$(basename "$selected" | tr . _)
+
+# Check if session exists already
+if ! tmux has-session -t="$selected_name" 2> /dev/null; then
+    # Create new session
+    tmux new-session -ds "$selected_name" -c "$selected"
+fi
+
+# If we're already in tmux, switch to session
+if [ -n "$TMUX" ]; then
+    tmux switch-client -t "$selected_name"
+else
+    # Otherwise attach to it
+    tmux attach -t "$selected_name"
+fi
