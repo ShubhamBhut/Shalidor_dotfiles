@@ -60,6 +60,11 @@ return {
       end,
    },
    {
+      'mrcjkb/haskell-tools.nvim',
+      version = '^7', -- Recommended
+      lazy = false, -- This plugin is already lazy
+   },
+   {
       'simrat39/rust-tools.nvim',
       event = "BufReadPre *.rs",
       enabled = true,
