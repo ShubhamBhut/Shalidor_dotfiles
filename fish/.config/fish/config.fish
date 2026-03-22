@@ -22,3 +22,4 @@ end
 set -gx PATH $PATH /home/KaiLorston/.lmstudio/bin
 # End of LM Studio CLI section
 
+set -gx PATH ~/bin $PATH

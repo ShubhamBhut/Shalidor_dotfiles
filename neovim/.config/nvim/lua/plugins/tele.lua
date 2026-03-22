@@ -13,9 +13,9 @@ return {
       },
       keys = {
          { '<Leader>b', '<cmd>Telescope buffers<cr>' },
-         { '<Leader>F', '<cmd>Telescope frecency<cr>' },
+         { '<Leader>f', '<cmd>Telescope frecency<cr>' },
          { '<Leader>sc', '<cmd>Telescope live_grep<cr>' },
-         { '<Leader>f', '<cmd>Telescope find_files<cr>'}
+         { '<Leader>F', '<cmd>Telescope find_files<cr>'}
       },
       config = function()
          require('telescope').load_extension 'frecency'
@@ -38,7 +38,7 @@ return {
             },
             pickers = {
                find_files = {
-                  find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
+                  find_command = { 'fd', '--type', '--hidden', 'f', '--strip-cwd-prefix' },
                },
             },
             extensions = {

@@ -61,8 +61,8 @@ return {
     end
 
     -- 3. Toggle Statusline Keymap
-    -- This binds `<leader>tl` (Toggle Lualine) to hide/show the bar
-    vim.keymap.set('n', '<leader>tl', function()
+    -- This binds `<leader>ll` (Toggle Lualine) to hide/show the bar
+    vim.keymap.set('n', '<leader>ll', function()
       if vim.opt.laststatus:get() == 0 then
         vim.opt.laststatus = 3 -- Show global statusline
       else
@@ -77,6 +77,14 @@ return {
         component_separators = '',
         section_separators = { left = '', right = '' },
         globalstatus = true,
+
+        ignore_focus = {
+          'NvimTree', 
+          'neo-tree', 
+          'TelescopePrompt', 
+          'mason', 
+          'lazy'
+        },
       },
       sections = {
         lualine_a = { 
