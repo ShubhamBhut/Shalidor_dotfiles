@@ -37,8 +37,15 @@ return {
                },
             },
             pickers = {
+               live_grep = {
+                    file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+                    additional_args = function(_)
+                        return { "--hidden" }
+                    end
+                },
                find_files = {
-                  find_command = { 'fd', '--type', '--hidden', 'f', '--strip-cwd-prefix' },
+                  hidden = true,
+                  find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
                },
             },
             extensions = {

@@ -10,7 +10,8 @@
         "mpd"
     ],
     "modules-center": [
-        "clock"
+        "clock",
+        "custom/timeprogress"
     ],
     "modules-right": [
         "pulseaudio",
@@ -69,7 +70,27 @@
         "interval": 1,
         "format": "{:%I:%M %p  %A %b %d}",
         "tooltip": true,
-        "tooltip-format": "上午：高数\n下午：Ps\n晚上：Golang\n<tt>{calendar}</tt>"
+        "tooltip-format": "<tt><span font_size='14pt'>{calendar}</span></tt>",
+        "calendar": {
+            "mode"          : "month",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "format": {
+                "months":     "<span color='#c4a7e7'><b>{}</b></span>",
+                "days":       "<span color='#e0def4'><b>{}</b></span>",
+                "weeks":      "<span color='#9ccfd8'><b>W{}</b></span>",
+                "weekdays":   "<span color='#f6c177'><b>{}</b></span>",
+                "today":      "<span color='#eb6f92'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+    "custom/timeprogress": {
+        "exec": "python3 ~/.config/waybar/time_progress.py",
+        "return-type": "json",
+        "interval": 60, // Updates every minute
+        "makrup": true,
+        "tooltip": true
     },
     "memory": {
         "interval": 1,

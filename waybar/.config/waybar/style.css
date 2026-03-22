@@ -62,11 +62,16 @@ window > box {
 }
 
 tooltip {
-    background: #3b4253;
+    background: #1e1e2e;
+    border: 1px solid #ea9a97;
+    border-radius: 8px;
 }
 
 tooltip label {
     color: #E4E8EF;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12pt;
+    padding: 5px;
 }
 
 #custom-launcher {
@@ -150,6 +155,12 @@ tooltip label {
 
 #mpd {
     color: #E4E8EF;
+}
+
+#custom-timeprogress {
+    color: #88C0D0; /* A nice frosty blue */
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #custom-cava-internal {
