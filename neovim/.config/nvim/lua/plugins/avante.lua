@@ -28,7 +28,7 @@ return {
           __inherited_from = "openai",
           endpoint = "https://openrouter.ai/api/v1",
           -- Bulletproof API key loading. Never prompts you again.
-          api_key_name = "cmd:cat ~/.openrouter_key",
+          api_key_name = "OPENROUTER_API_KEY",
           model = "moonshotai/kimi-k2.6:free",
         },
       },
