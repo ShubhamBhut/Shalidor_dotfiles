@@ -4,6 +4,7 @@ if status is-interactive
 end
 set -gx PATH /home/KaiLorston/.local/bin:/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl /home/KaiLorston/.foundry/bin
 set -gx GEMINI_API_KEY "AIzaSyACdmWQoWEUC_RQIKsYleru1ZcAB_epd1A"
+set -gx OPENROUTER_API_KEY "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"
 
 # Haskell / GHCup Paths
 set -gx PATH $HOME/.ghcup/bin $HOME/.cabal/bin $PATH
@@ -23,4 +24,5 @@ end
 set -gx PATH $PATH /home/KaiLorston/.lmstudio/bin
 # End of LM Studio CLI section
 
+set -gx PATH ~/bin $PATH
 set -gx PATH ~/bin $PATH

@@ -3,35 +3,35 @@ return {
   event = "VeryLazy",
   lazy = false,
   version = false,
-  build = "make",
+  -- Forces cargo to compile the templates locally so the error never returns
+  build = "make BUILD_FROM_SOURCE=true", 
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     "nvim-tree/nvim-web-devicons",
+    -- The magic dependency that makes the chat look beautiful
+    {
+      "MeanderingProgrammer/render-markdown.nvim",
+      opts = {
+        file_types = { "markdown", "Avante" },
+      },
+      ft = { "markdown", "Avante" },
+    },
   },
   config = function()
-    require("avante").setup(
-      -- {
-      -- provider = "claude",
-      -- auto_suggestions_provider = "claude",
-      -- claude = {
-      --   endpoint = "https://api.anthropic.com",
-      --   model = "claude-3-5-sonnet-20241022",
-      --   temperature = 0.2,
-      --   max_tokens = 4096,
-      --   api_key_name = "ANTHROPIC_API_KEY", -- Use environment variable directly
-      -- },
-      {
-      provider = "gemini",
+    require("avante").setup({
+      provider = "openrouter",
       providers = {
-      gemini = {
-        model = "gemini-3-flash-preview",
-        temperature = 0,
-        max_tokens = 4096,
-      }
-      },  
+        openrouter = {
+          __inherited_from = "openai",
+          endpoint = "https://openrouter.ai/api/v1",
+          -- Bulletproof API key loading. Never prompts you again.
+          api_key_name = "cmd:cat ~/.openrouter_key",
+          model = "moonshotai/kimi-k2.6:free",
+        },
+      },
       behaviour = {
         auto_suggestions = false,
         auto_set_highlight_group = true,
@@ -39,14 +39,12 @@ return {
         auto_apply_diff_after_generation = false,
         support_paste_from_clipboard = false,
         minimize_diff = true,
-        window_type = "float",
       },
       windows = {
         position = "right",
-        width = 80,
-        height = 30,
+        width = 40, -- Shrunk down from 80 to form a clean, non-intrusive sidebar
         sidebar_header = {
-          enabled = false,
+          enabled = true,
           align = "center",
           rounded = true,
         },
@@ -54,15 +52,10 @@ return {
           prefix = "> ",
           height = 8,
         },
-        edit = {
-          border = "rounded",
-          start_insert = false,  -- Don't start in insert mode
-        },
         ask = {
-          floating = true, -- Open the 'AvanteAsk' prompt in a floating window
-          border = "rounded",
-          start_insert = false, -- Start insert mode when opening the ask window
-          focus_on_apply = "ours", -- which diff to focus after applying
+          floating = false, -- Kills the tiny hover popup
+          start_insert = true,
+          focus_on_apply = "ours",
         },
       },
       hints = {
@@ -70,7 +63,7 @@ return {
       },
     })
 
-    -- Custom keymapping to toggle the window
+    -- Toggle the beautifully formatted sidebar on and off
     vim.keymap.set("n", "<leader>at", "<cmd>AvanteToggle<CR>", {
       noremap = true,
       silent = true,
