@@ -3,7 +3,6 @@ return {
   event = "VeryLazy",
   lazy = false,
   version = false,
-  -- Forces cargo to compile the templates locally so the error never returns
   build = "make BUILD_FROM_SOURCE=true", 
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
@@ -11,7 +10,6 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     "nvim-tree/nvim-web-devicons",
-    -- The magic dependency that makes the chat look beautiful
     {
       "MeanderingProgrammer/render-markdown.nvim",
       opts = {
@@ -22,14 +20,17 @@ return {
   },
   config = function()
     require("avante").setup({
-      provider = "openrouter",
       providers = {
+      gemini = {
+        model = "gemma-4-31b-it",
+        -- temperature = 0,
+        -- max_tokens = 4096,
+      },
         openrouter = {
           __inherited_from = "openai",
           endpoint = "https://openrouter.ai/api/v1",
-          -- Bulletproof API key loading. Never prompts you again.
           api_key_name = "OPENROUTER_API_KEY",
-          model = "moonshotai/kimi-k2.6:free",
+          model = "poolside/laguna-m.1:free",
         },
       },
       behaviour = {
@@ -42,7 +43,7 @@ return {
       },
       windows = {
         position = "right",
-        width = 40, -- Shrunk down from 80 to form a clean, non-intrusive sidebar
+        width = 40,
         sidebar_header = {
           enabled = true,
           align = "center",
@@ -53,7 +54,7 @@ return {
           height = 8,
         },
         ask = {
-          floating = false, -- Kills the tiny hover popup
+          floating = false,
           start_insert = true,
           focus_on_apply = "ours",
         },
@@ -63,11 +64,7 @@ return {
       },
     })
 
-    -- Toggle the beautifully formatted sidebar on and off
-    vim.keymap.set("n", "<leader>at", "<cmd>AvanteToggle<CR>", {
-      noremap = true,
-      silent = true,
-      desc = "Toggle Avante window",
-    })
+    vim.keymap.set("n", "<leader>at", "<cmd>AvanteToggle<CR>", { noremap = true, silent = true, desc = "Toggle Avante window" })
+    vim.keymap.set("n", "<leader>as", function() vim.cmd("AvanteSwitchProvider") end, { noremap = true, silent = true, desc = "Switch Avante Provider" })
   end,
 }

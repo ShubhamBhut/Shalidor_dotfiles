@@ -3,7 +3,6 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 set -gx PATH /home/KaiLorston/.local/bin:/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl /home/KaiLorston/.foundry/bin
-set -gx GEMINI_API_KEY "AIzaSyACdmWQoWEUC_RQIKsYleru1ZcAB_epd1A"
 
 # Haskell / GHCup Paths
 set -gx PATH $HOME/.ghcup/bin $HOME/.cabal/bin $PATH
