@@ -5,6 +5,7 @@
     "modules-left": [
         "custom/launcher",
         "hyprland/workspaces",
+        "custom/layout",
         "temperature",
         "custom/wall",
         "mpd"
@@ -34,8 +35,14 @@
         "tooltip": false
     },
     "hyprland/workspaces": {
-        "format": "{name}",
-        "on-click": "activate"
+        "format": "{name}"
+    },
+    "custom/layout": {
+        "exec": "~/.config/waybar/layout.sh",
+        "return-type": "json",
+        "interval": 0.5,
+        "format": "{}",
+        "tooltip": true
     },
     "backlight": {
         "device": "intel_backlight",
@@ -138,4 +145,21 @@
         "icon-size": 15,
         "spacing": 5
     }
+//    "hyprland/workspaces": {
+//        "format": "<span font_size='18pt'>{icon}</span>",
+//        "format-icons": {
+//            "1": "☉",
+//            "2": "☽",
+//            "3": "☿",
+//            "4": "♀",
+//            "5": "♂",
+//            "6": "♃",
+//            "7": "♄",
+//            "8": "♅",
+//            "9": "♆",
+//            "10": "♇"
+//        },
+//        "markup": true,
+//        "on-click": "activate"
+//    }
 }
