@@ -11,6 +11,12 @@ return {
     "MunifTanjim/nui.nvim",
     "nvim-tree/nvim-web-devicons",
     {
+     "ColinKennedy/mega.cmdparse",
+     dependencies = {
+        "ColinKennedy/mega.logging",
+      },
+    },
+    {
       "MeanderingProgrammer/render-markdown.nvim",
       opts = {
         file_types = { "markdown", "Avante" },
@@ -21,11 +27,11 @@ return {
   config = function()
     require("avante").setup({
       providers = {
-      gemini = {
-        model = "gemma-4-31b-it",
-        -- temperature = 0,
-        -- max_tokens = 4096,
-      },
+        gemini = {
+          model = "gemma-4-31b-it",
+          -- temperature = 0,
+          -- max_tokens = 4096,
+        },
         openrouter = {
           __inherited_from = "openai",
           endpoint = "https://openrouter.ai/api/v1",
